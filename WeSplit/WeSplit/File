@@ -1,0 +1,30 @@
+
+// SwiftUI gives us a dedicated view type for this purpose, called Form. Forms are scrolling lists of static controls like text and images, but can also include user interactive controls like text fields, toggle switches, buttons, and more.
+
+import SwiftUI
+
+
+    //Swift gives us a special solution called a property wrapper: a special attribute we can place before our properties that effectively gives them super-powers. In the case of storing simple program state like the number of times a button was tapped, we can use a property wrapper from SwiftUI called @State,
+struct ContentView: View {
+    
+    let students = ["Harry", "Hermione" , "Ron"]
+    @State private var selectedStudent = "Harry"
+    
+     var body: some View {
+        NavigationView {
+             Form {
+                 Picker("Select your student", selection: $selectedStudent) {
+                     ForEach(students, id: \.self) {
+                         Text($0)
+                     }
+                 }
+             }
+         }
+     }
+ }
+    
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
